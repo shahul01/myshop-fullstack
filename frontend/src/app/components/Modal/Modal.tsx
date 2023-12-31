@@ -7,7 +7,7 @@ interface IModalProps {
   onClose: (x:boolean) => void;
   title: string;
   children: React.ReactNode;
-  styleProp: Record<string, {num: number, unit: string}>;
+  // styleProp: Record<string, {num: number, unit: string}>;
 };
 
 const Modal = (props:IModalProps) => {
