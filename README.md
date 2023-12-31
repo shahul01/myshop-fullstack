@@ -9,6 +9,7 @@
 ![home.png](./frontend/public/images/screenshots/home.png)
 
 #### Product Detail
+![product-detail-slug.png](./frontend/public/images/screenshots/product-detail-slug.png)
 
 
 #### Stripe
