@@ -6,7 +6,7 @@
 
 ### Images
 #### Home
-
+![home.png](./frontend/public/images/screenshots/home.png)
 
 #### Product Detail
 
