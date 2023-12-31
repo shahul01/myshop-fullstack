@@ -18,10 +18,10 @@ const Cart = (props:CartProps) => {
 
   return (
     <div className={styles.cart}>
-      <p>(Hello from Cart 👋)</p>
       {cart.map((currCart, idx) => (
         <div className={styles.product} key={idx}>
-          <span>{currCart.title}</span> -
+          <span>{currCart.title}</span>
+          <span> - </span>
           <span>{currCart.qty}</span>
           {/* Image */}
         </div>

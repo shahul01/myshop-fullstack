@@ -22,6 +22,7 @@ const ProductDetailSlug = (props: ProductDetailSlugProps) => {
     currProduct.id === urlId
   ));
 
+
   return (
     <div className={styles['product-detail-slug']}>
       <div className={styles['product-box']}>
@@ -40,7 +41,11 @@ const ProductDetailSlug = (props: ProductDetailSlugProps) => {
                   {currProductData?.price}
                 </p>
                 <button
-                    onClick={()=>dispatch(cartSlice.actions.addProduct(currProductData))}
+                    onClick={() => (
+                      dispatch(
+                        cartSlice.actions.addProduct(currProductData)
+                      )
+                    )}
                     className={styles['add-to-cart']}
                   >
                   Add to Cart

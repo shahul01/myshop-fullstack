@@ -33,6 +33,7 @@ const Modal = (props:IModalProps) => {
         height: `${isShowModal ? '90%' : '0%'}`,
         width: `${isShowModal ? '100%' : '0%'}`
       }}
+      onClick={() => onClose(false)}
       >
       {isShowModal ?
         (
@@ -67,7 +68,7 @@ const Modal = (props:IModalProps) => {
             </div>
           </div>
         ) : (
-          <div className={styles["hide-modal" ]} />
+          <div className={styles["hide-modal"]} />
         )
 
       }

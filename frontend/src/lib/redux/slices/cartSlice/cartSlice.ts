@@ -1,18 +1,10 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: CartSliceState = {
-  products: [
-    {
-      id: '2',
-      title: 'Turtleneck',
-      image: {src: '/images/products/turtleneck.png', alt: 'Turtleneck'},
-      price: '$29.99',
-      qty: 1,
-    },
-  ]
+  products: []
 };
 
-function handleAddProduct(state:CartSliceState, payload:PayloadAction<Record<string, unknown>>) {
+function handleAddProduct(state:CartSliceState, payload:CartPayload) {
   const matchedProduct = state.products.find(currProduct  => (
     currProduct.id === payload.id
   ));
@@ -33,13 +25,24 @@ export const cartSlice = createSlice({
   initialState,
 
   reducers: {
-    addProduct: (state, action: PayloadAction<Record<string, unknown>>) => {
+    addProduct: (state, action: PayloadAction<CartPayload>) => {
       handleAddProduct(state, action.payload);
 
     }
   }
 });
 
+interface CartPayload {
+  id: string;
+  title: string;
+  image: {src: string; alt: string};
+  price: string;
+};
+
+interface CartProduct extends CartPayload {
+  qty: number;
+}
+
 export interface CartSliceState {
-  products: Array<Record<string, unknown>>;
+  products: Array<CartProduct>;
 };
