@@ -2,6 +2,9 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { productDatas } from '@/app/utils/datas';
+import {
+  useDispatch, cartSlice
+} from '@/lib/redux';
 import styles from './page.module.css';
 
 type ProductDetailSlugProps = {
@@ -12,6 +15,8 @@ type ProductDetailSlugProps = {
 
 const ProductDetailSlug = (props: ProductDetailSlugProps) => {
   const { params: {id: urlId} } = props;
+
+  const dispatch = useDispatch();
 
   const currProductData = productDatas.find(currProduct => (
     currProduct.id === urlId
@@ -35,7 +40,7 @@ const ProductDetailSlug = (props: ProductDetailSlugProps) => {
                   {currProductData?.price}
                 </p>
                 <button
-                    onClick={()=>{console.log('added')}}
+                    onClick={()=>dispatch(cartSlice.actions.addProduct(currProductData))}
                     className={styles['add-to-cart']}
                   >
                   Add to Cart

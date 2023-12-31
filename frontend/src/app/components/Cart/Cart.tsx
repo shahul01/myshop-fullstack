@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { cartSlice, useSelector, selectCart } from '@/lib/redux';
+import {
+  selectCart, useSelector
+} from '@/lib/redux';
 import styles from './cart.module.css';
 
 
@@ -18,8 +20,9 @@ const Cart = (props:CartProps) => {
     <div className={styles.cart}>
       <p>(Hello from Cart 👋)</p>
       {cart.map((currCart, idx) => (
-        <div key={idx}>
-          <p>{currCart.title}</p>
+        <div className={styles.product} key={idx}>
+          <span>{currCart.title}</span> -
+          <span>{currCart.qty}</span>
           {/* Image */}
         </div>
       ))}
