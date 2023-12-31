@@ -1,6 +1,7 @@
 div.product-detail-slug {
 
   div.product-box {
+    min-height: 80vh;
 
     div.details {
       display: flex;
@@ -21,9 +22,6 @@ div.product-detail-slug {
   }
 
 }
-
-
-
 
 @media (width > 800px ) {
   .product-box {

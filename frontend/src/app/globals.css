@@ -39,7 +39,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb)); */
-  background: hsl(360, 57%, 47%);
+  background: hsl(0, 60%, 47%);
   height: 100dvh;
   width: 100%;
 }
