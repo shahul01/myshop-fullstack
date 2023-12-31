@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --color-white-fade: hsla(0deg, 0%, 93%, 0);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -75,6 +76,18 @@ button {
   font-size: 1.2rem;
   cursor: pointer;
   user-select: none;
+}
+
+.hr-fade {
+  height: 1px;
+  /* width: 100%; */
+  background-image: linear-gradient(
+    90deg,
+    var(--color-white-fade) 24%,
+    white 50%,
+    var(--color-white-fade) 76%
+  );
+  margin: 8px 0;
 }
 
 ::-webkit-scrollbar {

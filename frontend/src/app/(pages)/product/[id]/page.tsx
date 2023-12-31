@@ -35,8 +35,8 @@ const ProductDetailSlug = (props: ProductDetailSlugProps) => {
                   {currProductData?.price}
                 </p>
                 <button
-                  onClick={()=>{console.log('added')}}
-                  className={styles['add-to-cart']}
+                    onClick={()=>{console.log('added')}}
+                    className={styles['add-to-cart']}
                   >
                   Add to Cart
                 </button>
