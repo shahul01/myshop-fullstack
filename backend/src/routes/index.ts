@@ -1,4 +1,4 @@
-import productRoutes from "./product.routes";
+import productRoutes from "./product.route";
 import type { Express } from 'express';
 
 export function initRoutes(app: Express) {
