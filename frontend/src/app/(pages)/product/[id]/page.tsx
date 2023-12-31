@@ -28,9 +28,9 @@ const ProductDetailSlug = (props: ProductDetailSlugProps) => {
                 height={0}
                 width={400}
               />
-              <div className='details'>
+              <div className={styles.details}>
                 <h2>{currProductData?.title}</h2>
-                <p>{currProductData?.price}</p>
+                <p className={styles.price}>{currProductData?.price}</p>
               </div>
             </>
           )

@@ -1,9 +1,26 @@
-.product-detail-slug {
+div.product-detail-slug {
+
+  div.product-box {
+
+    div.details {
+      padding-top: 20vw;
+
+      p.price {
+        font-size: 1.5rem;
+      }
+    }
+  }
 
 }
 
-.product-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+
+
+
+@media (width > 800px ) {
+  .product-box {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+
 }
