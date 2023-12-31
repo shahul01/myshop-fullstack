@@ -1,3 +1,4 @@
+"use client";
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { productDatas } from '@/app/utils/datas';
@@ -30,7 +31,15 @@ const ProductDetailSlug = (props: ProductDetailSlugProps) => {
               />
               <div className={styles.details}>
                 <h2>{currProductData?.title}</h2>
-                <p className={styles.price}>{currProductData?.price}</p>
+                <p className={styles.price}>
+                  {currProductData?.price}
+                </p>
+                <button
+                  onClick={()=>{console.log('added')}}
+                  className={styles['add-to-cart']}
+                  >
+                  Add to Cart
+                </button>
               </div>
             </>
           )

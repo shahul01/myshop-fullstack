@@ -3,11 +3,20 @@ div.product-detail-slug {
   div.product-box {
 
     div.details {
-      padding-top: 20vw;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding-top: 15vw;
+
 
       p.price {
         font-size: 1.5rem;
       }
+
+      button.add-to-cart {
+        background-color: hsl(0, 60%, 0%, 0.3);
+      }
+
     }
   }
 
