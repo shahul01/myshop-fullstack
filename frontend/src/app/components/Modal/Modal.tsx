@@ -29,7 +29,9 @@ const Modal = (props:IModalProps) => {
       className={styles.modal}
       style={{
         // transform: `translate(${(100 - modalWidth.num) / 2}vw, 5vh)`
-        backdropFilter: `${isShowModal ? 'blur(6px)' : 'blur(0px)'}`
+        backdropFilter: `${isShowModal ? 'blur(6px)' : 'blur(0px)'}`,
+        height: `${isShowModal ? '90%' : '0%'}`,
+        width: `${isShowModal ? '100%' : '0%'}`
       }}
       >
       {isShowModal ?
