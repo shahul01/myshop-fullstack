@@ -5,6 +5,7 @@ type RegisterUser = {
   fullname: string;
   username: string;
   email: string;
+  authMethod: string;
 };
 
 export type RegisterUserRawPass = RegisterUser & {
@@ -15,6 +16,7 @@ export type RegisterUserHashedPass = RegisterUser & {
   password: string;
 };
 
+// register user but without authMethod
 export type ResRegisterUser = RegisterUser & {
   id: string;
 };

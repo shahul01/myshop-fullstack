@@ -6,15 +6,12 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import session from 'express-session';
-import passport from 'passport';
 import cors from 'cors';
+import { port, sessionSecret, urlFrontend } from './constant';
 import { initRoutes } from './routes/index';
 
 
 dotenv.config();
-const sessionSecret = process.env.SESSION_SECRET || 'secret';
-const port = process.env.PORT || 8000;
-const urlFrontend = process.env.URL_FRONTEND || 'http://localhost:3000';
 
 const app = express();
 // TODO: get url from env
@@ -27,9 +24,6 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 initRoutes(app);
 

@@ -1,4 +1,5 @@
-import productRoutes from "./product.route";
+import authRoutes from './auth.route';
+import productRoutes from './product.route';
 import type { Express } from 'express';
 
 export function initRoutes(app: Express) {
@@ -8,7 +9,7 @@ export function initRoutes(app: Express) {
 
   app.use('/products', productRoutes);
 
-  // app.use('/auth', authRoutes);
+  app.use('/auth', authRoutes);
 
 
 };

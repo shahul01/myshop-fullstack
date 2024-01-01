@@ -1,7 +1,6 @@
-import authService from "../services/auth.service";
-import { handleCatchError } from "../utils/error";
+import authService from '../services/auth.service';
+import { ErrorHandler, handleCatchError } from '../utils/error';
 import type { Request, Response } from 'express';
-import type { ResRegisterUser } from "../types/user.type";
 
 
 const register = async (req:Request, res:Response) => {
@@ -9,16 +8,28 @@ const register = async (req:Request, res:Response) => {
 
     const createdUser = await authService.register({
       ...req.body,
-      rawPassword: req.body.password
+      rawPassword: req.body.password,
+      authMethod: 'local'
     });
 
-    const user:ResRegisterUser|undefined = createdUser?.user;
+    if (!createdUser) {
+      throw new ErrorHandler(500, 'Server error during registration');
+    };
 
-    // res.header();
-    // res.cookie();
+    const { authToken, refreshToken, user } = createdUser;
 
-    // authToken
-    res.status(201).json({ user });
+    if (Object.values(createdUser).some(val => !val)) {
+      throw new ErrorHandler(500, 'Server error during registration');
+    };
+
+    res.header("auth-token", authToken);
+    res.cookie("refresh-token", refreshToken, {
+      httpOnly: true,
+      sameSite: process.env.NODE_ENV === 'development' ? true: 'none',
+      secure: process.env.NODE_ENV === 'development' ? false: true
+    });
+
+    res.status(201).json({ authToken, user });
 
   } catch (err) {
     handleCatchError(err);

@@ -1,6 +1,5 @@
 import { Pool } from 'pg';
-
-const password = process.env.POSTGRES_PASSWORD || 'postgres';
+import { password } from '../constant';
 
 const pool = new Pool({
   user: 'postgres',

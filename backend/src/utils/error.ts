@@ -1,6 +1,7 @@
 import { ResponseError } from "../types";
 
 
+// TODO: change this to functional style?
 class ErrorHandler extends Error {
   public status: string;
 
@@ -17,10 +18,10 @@ const handleCatchError = (err: unknown) => {
   const errMessage = err instanceof Error ? err.message : 'Unknown error';
   const errStatus = (err as ResponseError)?.status || 500;
   throw new ErrorHandler(errStatus, errMessage);
-
 };
 
 
 export {
+  ErrorHandler,
   handleCatchError
 };
