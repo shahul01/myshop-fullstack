@@ -8,4 +8,7 @@ export function initRoutes(app: Express) {
 
   app.use('/products', productRoutes);
 
+  // app.use('/auth', authRoutes);
+
+
 };

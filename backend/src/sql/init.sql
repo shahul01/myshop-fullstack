@@ -17,12 +17,15 @@ CREATE TABLE IF NOT EXISTS public."products" (
 
 CREATE TABLE IF NOT EXISTS public."users" (
   "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  "name" VARCHAR(255) NOT NULL,
+  "fullname" VARCHAR(255) NOT NULL,
+  "username" VARCHAR(255) NOT NULL,
   "email" VARCHAR(255) NOT NULL,
   "password" VARCHAR(255) NOT NULL,
   "auth_method" VARCHAR(255) NOT NULL,
+  "full_address" VARCHAR(255),
+  "zip_code" INTEGER,
+  "phone_number" VARCHAR(255),
   "created_at" TIMESTAMP NOT NULL DEFAULT NOW(),
   "updated_at" TIMESTAMP NOT NULL DEFAULT NOW()
-
 );
 
