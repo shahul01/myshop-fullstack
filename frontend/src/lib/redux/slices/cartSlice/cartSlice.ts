@@ -32,6 +32,10 @@ export const cartSlice = createSlice({
   }
 });
 
+export interface CartSliceState {
+  products: Array<CartProduct>;
+};
+
 interface CartPayload {
   id: string;
   title: string;
@@ -41,8 +45,4 @@ interface CartPayload {
 
 interface CartProduct extends CartPayload {
   qty: number;
-}
-
-export interface CartSliceState {
-  products: Array<CartProduct>;
 };

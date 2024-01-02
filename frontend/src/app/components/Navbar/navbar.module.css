@@ -1,0 +1,14 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3rem;
+  padding: 0.25rem 0.5rem;
+  border-bottom: 1px solid hsla(0, 0%, 80%, 0.8);
+
+}
+
+div.right {
+  @apply flex justify-between items-center;
+  @apply gap-2;
+}

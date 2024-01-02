@@ -2,7 +2,7 @@
 
 
 export const urlFrontend = process.env.URL_FRONTEND || 'http://localhost:3000';
-export const port = process.env.PORT || 8000;
+export const port = Number(process.env.PORT || 8000);
 
 export const sessionSecret = process.env.SESSION_SECRET || 'secret';
 
