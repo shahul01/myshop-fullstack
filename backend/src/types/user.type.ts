@@ -16,12 +16,13 @@ export type RegisterUserHashedPass = RegisterUser & {
   password: string;
 };
 
-// register user but without authMethod
+// register user
+// TODO: omit authmethod
 export type ResRegisterUser = RegisterUser & {
   id: string;
 };
 
-export type User = RegisterUser &
+export type User = RegisterUserHashedPass &
 {
   id: string;
   auth_method: string;

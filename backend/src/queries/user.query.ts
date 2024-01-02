@@ -1,14 +1,15 @@
 import pool from "../config/db";
-import type { RegisterUserHashedPass } from "../types/user.type";
+import type { RegisterUserHashedPass, ResRegisterUser, User } from "../types/user.type";
 
 
-async function createUser(user: RegisterUserHashedPass) {
+async function createUser(user: RegisterUserHashedPass):Promise<ResRegisterUser> {
   const { fullname, username, email, password, authMethod } = user;
 
   const query = `
     INSERT INTO users(fullname, username, email, password, auth_method)
     VALUES($1, $2, $3, $4, $5)
-    returning id, fullname, username, email, auth_method`;
+    returning id, fullname, username, email, (auth_method as "authMethod")
+  `;
 
   const {rows: users} = await pool.query(
     query,
@@ -19,7 +20,7 @@ async function createUser(user: RegisterUserHashedPass) {
 
 };
 
-async function getUserByEmail(email: string) {
+async function getUserByEmail(email: string):Promise<User> {
   const query = `SELECT * FROM users WHERE lower(email) = lower($1) LIMIT 1`;
   const { rows: users } = await pool.query(
     query,

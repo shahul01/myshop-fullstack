@@ -9,6 +9,7 @@ import type { RegisterUserRawPass, ResRegisterUser } from "../types/user.type";
 
 const register = async (user: RegisterUserRawPass) => {
   try {
+    // TODO: rename `req` keyword to this data
     const { email, rawPassword } = user;
 
     const isUserValid = validateUser(email, rawPassword);
@@ -36,7 +37,7 @@ const register = async (user: RegisterUserRawPass) => {
       fullname: createdUser.fullname,
       username: createdUser.username,
       email: createdUser.email,
-      authMethod: createdUser.auth_method
+      authMethod: createdUser.authMethod
     };
 
     const authToken = await signAuthToken({ id: createdUser.id });
@@ -51,7 +52,52 @@ const register = async (user: RegisterUserRawPass) => {
   } catch (err) {
     handleCatchError(err);
   };
+
 };
+
+
+const login = async (reqEmail:string, reqRawPassword:string) => {
+
+  try {
+    const {
+      id:userId, fullname, username, email, password:dbPassword
+    } = await userQuery.getUserByEmail(reqEmail);
+
+    console.log(`req data: `, reqEmail, reqRawPassword);
+    const isUserValid = validateUser(reqEmail, reqRawPassword);
+
+    if (!isUserValid) throw new ErrorHandler(
+      401, 'Logging user data is not valid, not logged in.'
+    );
+
+    const isCorrectPassword = await bcrypt.compare(reqRawPassword, dbPassword);
+
+    // NOTE:
+    if (!isCorrectPassword) throw new ErrorHandler(
+      401, 'Password is not correct, not logged in.'
+    );
+
+    const authToken = await signAuthToken({ id: userId });
+    const refreshToken = await signRefreshToken({ id: userId });
+
+    const userDataToSend:Omit<ResRegisterUser, 'authMethod'> = {
+      id: userId,
+      fullname,
+      username,
+      email
+    };
+
+    return {
+      authToken,
+      refreshToken,
+      user: userDataToSend
+    }
+  } catch (err) {
+    handleCatchError(err);
+  };
+
+};
+
 
 // the server will sign the jwt with the secret
 // and server will validate the jwt with the secret
@@ -67,6 +113,7 @@ const signAuthToken = async (signData:{id:string}) => {
   };
 };
 
+
 const signRefreshToken = async (signData:{id:string}) => {
   try {
     return jwt.sign(
@@ -81,5 +128,6 @@ const signRefreshToken = async (signData:{id:string}) => {
 
 
 export default {
-  register
+  register,
+  login
 };
