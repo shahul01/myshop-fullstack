@@ -1,3 +1,4 @@
+// handles req, res
 import productService from '../services/product.service';
 import { handleCatchError } from '../utils/error';
 import type { Request, Response } from 'express';

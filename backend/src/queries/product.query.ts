@@ -1,3 +1,4 @@
+// handles data handling
 import pool from "../config/db";
 import type { Product } from "../types/product.type";
 

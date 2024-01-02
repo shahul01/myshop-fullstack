@@ -19,7 +19,19 @@ async function createUser(user: RegisterUserHashedPass) {
 
 };
 
+async function getUserByEmail(email: string) {
+  const query = `SELECT * FROM users WHERE lower(email) = lower($1) LIMIT 1`;
+  const { rows: users } = await pool.query(
+    query,
+    [email]
+  );
+
+  return users[0];
+
+};
+
 
 export default {
-  createUser
+  createUser,
+  getUserByEmail
 };

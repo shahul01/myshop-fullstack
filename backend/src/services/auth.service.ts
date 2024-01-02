@@ -17,6 +17,12 @@ const register = async (user: RegisterUserRawPass) => {
       401, 'Registering user data is not valid, not registered.'
     );
 
+    const isUserExistEmail = await userQuery.getUserByEmail(email);
+
+    if (isUserExistEmail) throw new ErrorHandler(
+      401, 'User with this email already exist, not registered.'
+    );
+
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(rawPassword, salt);
 
