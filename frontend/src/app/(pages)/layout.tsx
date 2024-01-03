@@ -1,6 +1,7 @@
 "use client";
-import { useState } from 'react';
 import { Providers } from '@/lib/providers';
+import { ConfigProvider } from 'antd';
+import { useState } from 'react';
 import Modal from '@/app/components/Modal/Modal';
 import Navbar from '../components/Navbar/Navbar';
 import Cart from '@/app/components/Cart/Cart';
@@ -24,26 +25,43 @@ export default function RootLayout({
 
   return (
     <Providers>
-      <html lang="en">
-        <body className={styles.layout}>
-          <Navbar
-            isShowCart={isShowCart}
-            setIsShowCart={setIsShowCart}
-          />
+      <ConfigProvider
+        theme={{
+          components: {
+            Button: {
+              colorPrimary: '#222',
+              colorPrimaryHover: '#000',
+              borderRadius: 0,
+              defaultBorderColor: '#222',
+            },
+            Input: {
+              colorPrimary: '#000',
+              borderRadius: 0,
+            }
+          }
+        }}
+      >
+        <html lang="en">
+          <body className={styles.layout}>
+            <Navbar
+              isShowCart={isShowCart}
+              setIsShowCart={setIsShowCart}
+            />
 
-          <div className={styles.cart}>
-            <Modal
-              title="Cart"
-              isShowModal={isShowCart}
-              onClose={() => setIsShowCart(false)}
-            >
-              <Cart />
+            <div className={styles.cart}>
+              <Modal
+                title="Cart"
+                isShowModal={isShowCart}
+                onClose={() => setIsShowCart(false)}
+              >
+                <Cart />
 
-            </Modal>
-          </div>
-          <div className={styles.children}>{children}</div>
-        </body>
-      </html>
+              </Modal>
+            </div>
+            <div className={styles.children}>{children}</div>
+          </body>
+        </html>
+      </ConfigProvider>
     </Providers>
   )
 };
