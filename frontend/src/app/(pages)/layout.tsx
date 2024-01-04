@@ -20,26 +20,26 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
+  const antdConfig = {
+    components: {
+      Button: {
+        colorPrimary: '#222',
+        colorPrimaryHover: '#000',
+        borderRadius: 0,
+        defaultBorderColor: '#222',
+      },
+      Input: {
+        colorPrimary: '#000',
+        borderRadius: 0,
+      }
+    }
+  };
   const [ isShowCart, setIsShowCart ] = useState(false);
-
 
   return (
     <Providers>
       <ConfigProvider
-        theme={{
-          components: {
-            Button: {
-              colorPrimary: '#222',
-              colorPrimaryHover: '#000',
-              borderRadius: 0,
-              defaultBorderColor: '#222',
-            },
-            Input: {
-              colorPrimary: '#000',
-              borderRadius: 0,
-            }
-          }
-        }}
+        theme={antdConfig}
       >
         <html lang="en">
           <body className={styles.layout}>

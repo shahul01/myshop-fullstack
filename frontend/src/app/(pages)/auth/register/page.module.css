@@ -1,0 +1,11 @@
+.register {
+  @apply flex flex-col justify-between items-center;
+  @apply gap-2;
+  @apply mt-[6%];
+
+  form.form {
+    @apply flex flex-col justify-between items-center;
+    @apply gap-2;
+  }
+
+}

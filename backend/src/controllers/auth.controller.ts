@@ -6,6 +6,7 @@ import type { Request, Response } from 'express';
 const register = async (req:Request, res:Response) => {
   try {
 
+    // TODO: add type for createdUser
     const createdUser = await authService.register({
       ...req.body,
       rawPassword: req.body.password,

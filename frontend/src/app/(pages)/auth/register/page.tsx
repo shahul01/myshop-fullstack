@@ -2,6 +2,8 @@
 import { Button, Input } from 'antd';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import styles from './page.module.css';
+import { getRandom } from '@/app/utils/misc';
 
 
 type RegisterProps = {
@@ -12,68 +14,64 @@ type RegisterProps = {
 const Register = (props:RegisterProps) => {
   const {  } = props;
 
-  const initRegisterForm = {
-    username: '',
-    email: '',
-    password: ''
-  };
-  type RegisterForm = typeof initRegisterForm;
+  async function handleSubmit(e:React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
 
-  const [ registerForm, setRegisterForm ] = useState(initRegisterForm);
+    const rawFormClass = new FormData(e.currentTarget);
+    const rawFormData = Object.fromEntries(rawFormClass);
+    const username = `${rawFormData.fullname}${getRandom(4)}`.replace(/\s/g, '');
+    const fullFormData = { ...rawFormData, username };
+    console.log(`fullFormData: `, fullFormData);
 
-  function handleChange(e:React.ChangeEvent<HTMLInputElement>) {
-    const { name, value  } = e.target;
-    setRegisterForm({
-      ...registerForm,
-      [name]: value
-    });
-  };
-
-  function handleSubmit() {
-    // fetch via route handler
     // validate
-    console.log(registerForm);
-    // if no error
-    setRegisterForm(initRegisterForm);
+
+    const postRegister = await fetch('/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(fullFormData),
+    });
+    const resRegister = await postRegister.json();
+    console.log(`resRegister: `, resRegister);
     // router.push('/auth/login');
+
   };
+
 
   return (
-    <div className='register flex flex-col items-center justify-between gap-2 mt-[6%]' >
+    <div className={styles.register} >
 
       <h2 className='font-light'>Register</h2>
-      <Input
-        name='username'
-        style={{width:'16rem'}}
-        type='text'
-        placeholder='Username'
-        value={registerForm.username}
-        onChange={handleChange}
-      />
-      <Input
-        name='email'
-        style={{width:'16rem'}}
-        type='email'
-        placeholder='Email'
-        value={registerForm.email}
-        onChange={handleChange}
-      />
-      <Input
-        name='password'
-        minLength={6}
-        style={{width:'16rem'}}
-        type='password'
-        placeholder='Password'
-        value={registerForm.password}
-        onChange={handleChange}
-      />
-      <Button
-        type='primary'
-        onClick={handleSubmit}
-        style={{border:'1px solid #eee'}}
-      >
-        Register
-      </Button>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <Input
+          name='fullname'
+          required={true}
+          style={{width:'16rem'}}
+          type='text'
+          placeholder='Full name'
+        />
+        <Input
+          name='email'
+          required={true}
+          style={{width:'16rem'}}
+          type='email'
+          placeholder='Email'
+        />
+        <Input
+          name='password'
+          required={true}
+          minLength={6}
+          style={{width:'16rem'}}
+          type='password'
+          placeholder='Password'
+        />
+        <Button
+          type='primary'
+          htmlType='submit'
+          style={{border:'1px solid #eee'}}
+        >
+          Register
+        </Button>
+      </form>
       <Link href='/auth/login' className='underline'>
         <span>Already have an account?</span>
         <span> Login</span>

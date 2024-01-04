@@ -8,7 +8,7 @@ async function createUser(user: RegisterUserHashedPass):Promise<ResRegisterUser>
   const query = `
     INSERT INTO users(fullname, username, email, password, auth_method)
     VALUES($1, $2, $3, $4, $5)
-    returning id, fullname, username, email, (auth_method as "authMethod")
+    returning id, fullname, username, email, auth_method AS authMethod
   `;
 
   const {rows: users} = await pool.query(

@@ -31,6 +31,8 @@ const register = async (user: RegisterUserRawPass) => {
       ...user,
       password: hashedPassword
     });
+    // IMPORTANT:
+    console.log(`createdUser: `, createdUser);
 
     const userDataToSend: ResRegisterUser = {
       id: createdUser.id,
