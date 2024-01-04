@@ -31,8 +31,7 @@ const register = async (user: RegisterUserRawPass) => {
       ...user,
       password: hashedPassword
     });
-    // IMPORTANT:
-    console.log(`createdUser: `, createdUser);
+    // console.log(`createdUser: `, createdUser);
 
     const userDataToSend: ResRegisterUser = {
       id: createdUser.id,
@@ -65,7 +64,6 @@ const login = async (reqEmail:string, reqRawPassword:string) => {
       id:userId, fullname, username, email, password:dbPassword
     } = await userQuery.getUserByEmail(reqEmail);
 
-    console.log(`req data: `, reqEmail, reqRawPassword);
     const isUserValid = validateUser(reqEmail, reqRawPassword);
 
     if (!isUserValid) throw new ErrorHandler(
