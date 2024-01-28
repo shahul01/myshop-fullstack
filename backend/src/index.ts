@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import session from 'express-session';
 import cors from 'cors';
-import { port, sessionSecret, urlFrontend } from './constant';
+import { port, sessionSecret, urlFrontend } from './constants';
 import { initRoutes } from './routes/index';
 
 

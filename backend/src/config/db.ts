@@ -1,5 +1,5 @@
 import { Pool } from 'pg';
-import { password } from '../constant';
+import { password } from '../constants';
 
 const pool = new Pool({
   user: 'postgres',

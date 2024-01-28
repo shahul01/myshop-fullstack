@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { NextFunction, Request, Response } from 'express';
-import { authTokenSecret } from "../../constant";
+import { authTokenSecret } from "../../constants";
 import { handleCatchError } from '../../utils/error';
 
 

@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { authTokenSecret, refreshTokenSecret } from '../constant';
+import { authTokenSecret, refreshTokenSecret } from '../constants';
 import userQuery from "../queries/user.query";
 import { validateUser } from '../utils/validators/user';
 import { ErrorHandler, handleCatchError } from "../utils/error";
