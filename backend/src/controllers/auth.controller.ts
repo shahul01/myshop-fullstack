@@ -23,8 +23,8 @@ const register = async (req:Request, res:Response) => {
       throw new ErrorHandler(500, 'Server error during registration, not registered.');
     };
 
-    res.header("auth-token", authToken);
-    res.cookie("refresh-token", refreshToken, {
+    res.header('auth-token', authToken);
+    res.cookie('refresh-token', refreshToken, {
       httpOnly: true,
       sameSite: process.env.NODE_ENV === 'development' ? true: 'none',
       secure: process.env.NODE_ENV === 'development' ? false: true
@@ -58,7 +58,7 @@ const login = async (req:Request, res:Response) => {
     };
 
     res.header('auth-token', authToken);
-    res.cookie('refreshToken', refreshToken, {
+    res.cookie('refresh-token', refreshToken, {
       httpOnly: true,
       sameSite: process.env.NODE_ENV === 'development' ? true : 'none',
       secure: process.env.NODE_ENV === 'development' ? false : true
