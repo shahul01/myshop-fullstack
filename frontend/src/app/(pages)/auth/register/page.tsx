@@ -42,8 +42,8 @@ const Register = (props:RegisterProps) => {
   return (
     <div className={styles.register} >
 
-      <h2 className='font-light'>Register</h2>
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <h2 className={styles.title}>Register</h2>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <Input
           name='fullname'
           required={true}
@@ -74,10 +74,13 @@ const Register = (props:RegisterProps) => {
           Register
         </Button>
       </form>
-      <Link href='/auth/login' className='underline'>
-        <span>Already have an account?</span>
-        <span> Login</span>
-      </Link>
+      <div className={styles.login}>
+        <p>Already have an account?</p>
+        <Link className={styles['login-link']} href='/auth/login'>
+          <span>Login</span>
+        </Link>
+
+      </div>
 
     </div>
   )

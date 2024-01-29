@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useSelector, selectAuth } from '@/lib/redux';
 import { useEffect, useState } from 'react';
 
@@ -15,7 +16,11 @@ const AuthNav = (props:AuthNavProps) => {
 
   return (
     <div className='auth-nav'>
-      {auth ? 'Logout' : 'Login'}
+      {auth ?
+        'Logout'
+      :
+        <Link href='/auth/login' title="Login page">Login</Link>
+      }
 
     </div>
   )

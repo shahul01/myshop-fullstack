@@ -70,7 +70,7 @@ const Login = (props:LoginProps) => {
       <div className={styles.register}>
         <p>Don&apos;t have an account yet?</p>
         <Link className={styles['register-link']} href='/auth/register'>
-          <p> Register</p>
+          <p>Register</p>
         </Link>
 
       </div>

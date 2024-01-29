@@ -1,10 +1,8 @@
 "use client";
 import Image from 'next/image';
+import { useDispatch, cartSlice, useSelector } from '@/lib/redux';
 import { useEffect, useState } from 'react';
 import { productDatas } from '@/app/utils/datas';
-import {
-  useDispatch, cartSlice
-} from '@/lib/redux';
 import styles from './page.module.css';
 
 type ProductDetailSlugProps = {
@@ -17,6 +15,7 @@ const ProductDetailSlug = (props: ProductDetailSlugProps) => {
   const { params: {id: urlId} } = props;
 
   const dispatch = useDispatch();
+  const cart = useSelector(state => state.cart);
 
   const currProductData = productDatas.find(currProduct => (
     currProduct.id === urlId
@@ -41,11 +40,12 @@ const ProductDetailSlug = (props: ProductDetailSlugProps) => {
                   {currProductData?.price}
                 </p>
                 <button
-                    onClick={() => (
+                    onClick={() => {
                       dispatch(
                         cartSlice.actions.addProduct(currProductData)
-                      )
-                    )}
+                      );
+                      console.log(cart)
+                    }}
                     className={styles['add-to-cart']}
                   >
                   Add to Cart

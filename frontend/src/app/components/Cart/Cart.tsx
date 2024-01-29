@@ -1,7 +1,5 @@
+import { selectCart, useSelector } from '@/lib/redux';
 import { useEffect, useState } from 'react';
-import {
-  selectCart, useSelector
-} from '@/lib/redux';
 import styles from './cart.module.css';
 
 

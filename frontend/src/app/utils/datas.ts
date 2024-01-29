@@ -23,5 +23,5 @@ const productDatas = [
 ];
 
 export {
-  // productDatas
+  productDatas
 };
