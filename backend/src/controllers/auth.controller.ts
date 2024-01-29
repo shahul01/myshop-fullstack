@@ -30,7 +30,7 @@ const register = async (req:Request, res:Response) => {
       secure: process.env.NODE_ENV === 'development' ? false: true
     });
     res.status(201).json({
-      authToken,
+      'auth-token': authToken,
       user
     });
 
@@ -64,7 +64,7 @@ const login = async (req:Request, res:Response) => {
       secure: process.env.NODE_ENV === 'development' ? false : true
     });
     res.status(200).json({
-      authToken,
+      'auth-token': authToken,
       user
     });
 

@@ -8,5 +8,6 @@ export const sessionSecret = process.env.SESSION_SECRET || 'secret';
 
 export const password = process.env.POSTGRES_PASSWORD || 'postgres';
 
+export const tokenName = process.env.AUTH_TOKEN_NAME || 'auth-token';
 export const authTokenSecret = process.env.AUTH_TOKEN_SECRET || 'secret';
 export const refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET || 'refreshsecret';

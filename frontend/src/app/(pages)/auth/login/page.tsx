@@ -2,6 +2,7 @@
 import { Button, Input } from 'antd';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { tokenName } from '@/app/utils/constants';
 import styles from './page.module.css';
 
 
@@ -20,6 +21,7 @@ const Login = (props:LoginProps) => {
     const formData = Object.fromEntries(rawFormData);
     console.log(`formData: `, rawFormData);
 
+    // TODO: add try catch
     const postLogin = await fetch('/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -27,6 +29,7 @@ const Login = (props:LoginProps) => {
     });
 
     const resLogin = await postLogin.json();
+    localStorage.setItem(tokenName, resLogin[tokenName]);
     console.log(`resLogin: `, resLogin);
     // router.push('/');
 

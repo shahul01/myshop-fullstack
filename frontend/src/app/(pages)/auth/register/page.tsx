@@ -2,8 +2,9 @@
 import { Button, Input } from 'antd';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import styles from './page.module.css';
 import { getRandom } from '@/app/utils/misc';
+import { tokenName } from '@/app/utils/constants';
+import styles from './page.module.css';
 
 
 type RegisterProps = {
@@ -31,6 +32,7 @@ const Register = (props:RegisterProps) => {
       body: JSON.stringify(fullFormData),
     });
     const resRegister = await postRegister.json();
+    localStorage.setItem(tokenName, resRegister.tokenName);
     console.log(`resRegister: `, resRegister);
     // router.push('/auth/login');
 

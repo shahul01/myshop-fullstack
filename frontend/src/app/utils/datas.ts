@@ -1,7 +1,7 @@
 
 
 // temp product data
-export const productDatas = [
+const productDatas = [
   {
     id: '1',
     title: 'Coat',
@@ -21,3 +21,7 @@ export const productDatas = [
     price: '$39.99',
   },
 ];
+
+export {
+  // productDatas
+};
