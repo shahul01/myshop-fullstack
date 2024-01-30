@@ -22,7 +22,7 @@ const Register = (props:RegisterProps) => {
     const rawFormData = Object.fromEntries(rawFormClass);
     const username = `${rawFormData.fullname}${getRandom(4)}`.replace(/\s/g, '');
     const fullFormData = { ...rawFormData, username };
-    console.log(`fullFormData: `, fullFormData);
+    // console.log(`fullFormData: `, fullFormData);
 
     // validate
 

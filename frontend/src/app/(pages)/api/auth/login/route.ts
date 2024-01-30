@@ -4,7 +4,6 @@ import { NextRequest, NextResponse } from "next/server"
 
 export async function POST(req:NextRequest, res:NextResponse) {
   const reqBody = await req.json();
-  console.log(`###### reqBody: `, reqBody);
 
   const postLogin = await fetch(`${backendBase}/auth/login`, {
     method: 'POST',

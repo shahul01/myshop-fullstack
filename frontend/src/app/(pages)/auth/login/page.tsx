@@ -19,7 +19,6 @@ const Login = (props:LoginProps) => {
 
     const rawFormData = new FormData(e.currentTarget);
     const formData = Object.fromEntries(rawFormData);
-    console.log(`formData: `, rawFormData);
 
     // TODO: add try catch
     const postLogin = await fetch('/api/auth/login', {
