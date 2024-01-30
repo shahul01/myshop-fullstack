@@ -47,14 +47,12 @@ const Register = (props:RegisterProps) => {
         <Input
           name='fullname'
           required={true}
-          style={{width:'16rem'}}
           type='text'
           placeholder='Full name'
         />
         <Input
           name='email'
           required={true}
-          style={{width:'16rem'}}
           type='email'
           placeholder='Email'
         />
@@ -62,14 +60,12 @@ const Register = (props:RegisterProps) => {
           name='password'
           required={true}
           minLength={6}
-          style={{width:'16rem'}}
           type='password'
           placeholder='Password'
         />
         <Button
           type='primary'
           htmlType='submit'
-          style={{border:'1px solid #eee'}}
         >
           Register
         </Button>

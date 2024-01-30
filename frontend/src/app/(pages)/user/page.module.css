@@ -1,0 +1,5 @@
+.user {
+  h3 {
+    @apply font-light;
+  }
+}

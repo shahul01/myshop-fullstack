@@ -1,7 +1,7 @@
-.register {
+.details {
   @apply flex flex-col justify-between items-center;
   @apply gap-2;
-  @apply mt-[6%];
+  /* @apply mt-[6%]; */
 
   h2.title {
     @apply font-light;
@@ -13,19 +13,13 @@
     @apply gap-2;
 
     input {
-      @apply w-64;
+      @apply w-80;
     }
 
     button[type='submit'] {
       @apply border border-solid border-[#eee];
     }
-  }
 
-  div.login {
-    @apply flex gap-2;
-    a.login-link {
-      @apply underline;
-    }
   }
 
 }

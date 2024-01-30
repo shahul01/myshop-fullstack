@@ -5,15 +5,25 @@
 
   h2.title {
     @apply font-light;
+    @apply text-center;
   }
 
   form.form {
     @apply flex flex-col justify-between items-center;
     @apply gap-2;
+
+    input {
+      @apply w-64;
+    }
+
+    button[type='submit'] {
+      @apply border border-solid border-[#eee];
+    }
   }
 
   div.register {
     @apply flex gap-2;
+
     a.register-link {
       @apply underline;
 
