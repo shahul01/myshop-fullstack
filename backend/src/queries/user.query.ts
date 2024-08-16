@@ -31,8 +31,15 @@ async function getUserByEmail(email: string):Promise<User> {
 
 };
 
+// TODO: write this
+async function updateUserDetails(user: RegisterUserHashedPass) {
+  return;
+
+};
+
 
 export default {
   createUser,
-  getUserByEmail
+  getUserByEmail,
+  updateUserDetails
 };

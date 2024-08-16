@@ -1,11 +1,9 @@
 {
+  "editor.tabSize": 2,
   "cSpell.words": [
     "antd",
     "bcrpyt",
     "fullname",
     "myshop"
   ],
-  "editor": {
-    "rulers": [ 71 ]
-  }
 }

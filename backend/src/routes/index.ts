@@ -1,5 +1,6 @@
 import authRoutes from './auth.route';
 import productRoutes from './product.route';
+import userRoutes from './user.route';
 import { verifyAuthTokenMW } from '../middlewares/auth/tokens';
 import type { Express } from 'express';
 
@@ -15,6 +16,8 @@ export function initRoutes(app: Express) {
   app.use('/products', productRoutes);
 
   app.use('/auth', authRoutes);
+
+  app.use('/user', userRoutes);
 
 
 };
