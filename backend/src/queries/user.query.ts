@@ -32,7 +32,8 @@ async function getUserByEmail(email: string):Promise<User> {
 };
 
 // TODO: write this
-async function updateUserDetails(user: RegisterUserHashedPass) {
+// RegisterUserHashedPass
+async function updateUserDetails(user: Record<string, string>) {
   return;
 
 };

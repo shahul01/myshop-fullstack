@@ -2,7 +2,7 @@ Total:
   # bugs:
 
     backend:
-    ☐ doesnt build
+      ☐ doesnt build
 
 
   # problem:
@@ -11,6 +11,8 @@ Total:
 
   # important:
     ☐ security
+    ☐ replace public env with NEXT_PUBLIC otherwise it won't show up
+    ☐ deploy
 
 
 
@@ -25,7 +27,7 @@ Total:
   # techstack:
     ☐ SSR
       ☐ with secondary backend - https://youtu.be/C5NnVfbNpq8
-    ☐ react-cookie
+    ✔ react-cookie @done(24-08-17 14:26)
 
 
 
@@ -49,7 +51,7 @@ Total:
 
   # security:
     ☐ github security
-        ☐ dependabot
+      ☐ dependabot
     ☐ helmet
 
 
@@ -59,6 +61,9 @@ Total:
 
 
   # docs & reference:
+    ☐ Auth
+      - tokens - https://chatgpt.com/c/2f76db56-a4f4-4728-9b1f-46b9bbe17fd2
+      - Refer `PERN-Store` below
     ☐ General
       - https://motion.ant.design/
     ☐ Backend

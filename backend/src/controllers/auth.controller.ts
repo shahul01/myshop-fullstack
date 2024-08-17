@@ -57,14 +57,14 @@ const login = async (req:Request, res:Response) => {
       throw new ErrorHandler(500, 'Server error during logging in, not logged in.');
     };
 
-    res.header('auth-token', authToken);
-    res.cookie('refresh-token', refreshToken, {
+    res.header('Authorization', `Bearer ${authToken}`);
+    res.cookie('refresh_token', refreshToken, {
       httpOnly: true,
-      sameSite: process.env.NODE_ENV === 'development' ? true : 'none',
+      sameSite: process.env.NODE_ENV === 'development' ? 'none' : 'strict',
       secure: process.env.NODE_ENV === 'development' ? false : true
     });
-    res.status(200).json({
-      'auth-token': authToken,
+    res.status(201).json({
+      // 'auth_token': authToken,
       user
     });
 
@@ -72,6 +72,10 @@ const login = async (req:Request, res:Response) => {
     handleCatchError(err);
   };
 
+};
+
+const refreshToken = async () => {
+  // authService.generateRefreshToken()
 };
 
 
