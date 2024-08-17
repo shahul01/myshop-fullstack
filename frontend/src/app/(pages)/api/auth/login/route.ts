@@ -11,9 +11,22 @@ export async function POST(req:NextRequest, res:NextResponse) {
     body: JSON.stringify(reqBody)
   });
 
+  const authToken = postLogin.headers.get('Authorization');
+  const refreshToken = postLogin.headers.get('set-cookie');
+  // if (!authToken || !refreshToken) return new Response('Error', {status: 400});
+
+  // has user data
   const resLogin = await postLogin.json();
 
-  // status(postLogin.status)
-  return Response.json(resLogin);
+  // ...resLogin
+  const response = NextResponse.json(
+    { ...resLogin }, { status: 201 }
+  );
+  response.headers.set('Authorization', authToken!);
+  // sets refresh Token automatically on the client
+  response.headers.set('refreshToken', refreshToken!);
+
+
+  return response;
 
 };

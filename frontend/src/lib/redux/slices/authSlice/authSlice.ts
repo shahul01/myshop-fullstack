@@ -11,7 +11,7 @@ export const authSlice = createSlice({
 
   reducers: {
     setIsAuth: (state, action:PayloadAction<AuthPayload>) => {
-      state.isAuth = action.payload.isAuth;
+      state.isAuth = action.payload;
     }
   }
 
@@ -21,6 +21,4 @@ export interface AuthSliceState {
   isAuth: boolean;
 };
 
-interface AuthPayload {
-  isAuth: boolean;
-};
+type AuthPayload = boolean;
