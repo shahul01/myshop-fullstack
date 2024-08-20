@@ -17,7 +17,7 @@ export function initRoutes(app: Express) {
 
   app.use('/auth', authRoutes);
 
-  app.use('/user', userRoutes);
+  app.use('/user', verifyAuthTokenMW, userRoutes);
 
 
 };

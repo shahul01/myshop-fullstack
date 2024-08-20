@@ -35,3 +35,5 @@ export type User = RegisterUserHashedPass &
   zip_code: number;
   phone_number: string;
 };
+
+export type SomeUserColumns = Partial<Array<keyof User>>;

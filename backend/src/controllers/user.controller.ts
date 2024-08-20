@@ -5,7 +5,7 @@ import type { Request, Response } from 'express';
 
 const getUserByEmail = async (req:Request, res:Response) => {
   try {
-    const {email: reqEmail} = req.body;
+    const reqEmail = req.params.email;
     const user = await userService.getUserByEmail(reqEmail);
     res.status(200).json(user);
   } catch (err) {
