@@ -1,7 +1,8 @@
--- DROP DATABASE IF EXISTS "myshop-fullstack";
+-- DROP DATABASE IF EXISTS "myshop_fullstack_db";
 
-CREATE DATABASE "myshop-fullstack";
-\c "myshop-fullstack";
+-- Make sure db name is right according to .env
+CREATE DATABASE "myshop_fullstack_db";
+\c "myshop_fullstack_db";
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
@@ -22,10 +23,12 @@ CREATE TABLE IF NOT EXISTS public."users" (
   "email" VARCHAR(255) NOT NULL,
   "password" VARCHAR(255) NOT NULL,
   "auth_method" VARCHAR(255) NOT NULL,
-  "full_address" VARCHAR(255),
+  "house_no_and_street_name" VARCHAR(255),
+  "city" VARCHAR(255),
+  "state" VARCHAR(255),
+  "country" VARCHAR(255),
   "zip_code" INTEGER,
   "phone_number" VARCHAR(255),
   "created_at" TIMESTAMP NOT NULL DEFAULT NOW(),
   "updated_at" TIMESTAMP NOT NULL DEFAULT NOW()
 );
-

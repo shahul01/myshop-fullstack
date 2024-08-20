@@ -59,9 +59,12 @@ const register = async (reqUser: RegisterUserRawPass) => {
 const login = async (reqEmail:string, reqRawPassword:string) => {
 
   try {
+    const colsToReturn:SomeUserColumns = [
+      'id', 'fullname', 'username', 'email', 'password'
+    ];
     const {
       id:userId, fullname, username, email, password:dbPassword
-    } = await userQuery.getUserByEmail(['id', 'password'], reqEmail);
+    } = await userQuery.getUserByEmail(colsToReturn, reqEmail);
 
     const isUserValid = validateUser(reqEmail, reqRawPassword);
 

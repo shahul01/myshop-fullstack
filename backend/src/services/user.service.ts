@@ -1,14 +1,16 @@
 import userQuery from "../queries/user.query";
-import { SomeUserColumns } from "../types/user.type";
+import { SomeUserColumnsWithoutPass } from "../types/user.type";
 import { handleCatchError } from "../utils/error";
 
 
 const getUserByEmail = async (reqEmail:string) => {
   try {
 
-    // Gets all non secure data when called from [GET]/user/email
-    const colsToReturn:SomeUserColumns = [
-      'id', 'fullname', 'username', 'email', 'full_address', 'zip_code', 'phone_number'
+    // Gets all non sensitive data when called from [GET]/user/email
+    const colsToReturn:SomeUserColumnsWithoutPass = [
+      'id', 'fullname', 'username', 'email',
+      'house_no_and_street_name', 'city', 'state', 'country',
+      'zip_code', 'phone_number'
     ];
     return await userQuery.getUserByEmail(colsToReturn, reqEmail);
   } catch (err) {

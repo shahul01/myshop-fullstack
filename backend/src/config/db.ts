@@ -1,12 +1,12 @@
 import { Pool } from 'pg';
-import { password } from '../constants';
+import { pgDatabase, pgHost, pgPassword, pgPort, pgUsername } from '../constants';
 
 const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'myshop-fullstack',
-  password: password,
-  port: 5432
+  user: pgUsername,
+  host: pgHost,
+  database: pgDatabase,
+  password: pgPassword,
+  port: pgPort,
 });
 
 export default pool;
