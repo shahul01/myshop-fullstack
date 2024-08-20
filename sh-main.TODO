@@ -11,7 +11,7 @@ Total:
 
   # important:
     ☐ security
-    ☐ replace public env with NEXT_PUBLIC otherwise it won't show up
+    ✔ replace public env with NEXT_PUBLIC otherwise it won't show up @done(24-08-17 23:08)
     ☐ deploy
 
 

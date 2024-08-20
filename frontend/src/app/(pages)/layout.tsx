@@ -1,13 +1,16 @@
 "use client";
+import { useEffect, useRef, useState } from 'react';
 import { Providers } from '@/lib/providers';
 import { ConfigProvider } from 'antd';
-import { useState } from 'react';
+import { useCookies } from 'react-cookie';
 import Modal from '@/app/components/Modal/Modal';
 import Navbar from '../components/Navbar/Navbar';
 import Cart from '@/app/components/Cart/Cart';
+import { authSlice, reduxStore } from '@/lib/redux';
+import { tokenName } from '@/app/utils/constants';
 import '@/app/globals.css';
 import styles from './layout.module.css';
-import type { Metadata } from 'next';
+// import type { Metadata } from 'next';
 
 // export const metadata: Metadata = {
 //   title: 'MyShop',
@@ -20,6 +23,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
+  const firstRender = useRef(true);
   const antdConfig = {
     components: {
       Button: {
@@ -34,7 +38,19 @@ export default function RootLayout({
       }
     }
   };
+  const [ cookies ] = useCookies([tokenName]);
   const [ isShowCart, setIsShowCart ] = useState(false);
+
+  function checkIsAuth() {
+    if (!cookies[tokenName]) return;
+    reduxStore.dispatch(authSlice.actions.setIsAuth(true));
+  };
+
+  useEffect(() => {
+    if (firstRender.current) firstRender.current = false;
+    else checkIsAuth();
+
+  }, []);
 
   return (
     <Providers>

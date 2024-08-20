@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useCookies } from 'react-cookie';
 import { useEffect, useState } from 'react';
-import { authSlice, useDispatch } from '@/lib/redux';
+import { authSlice, reduxStore } from '@/lib/redux';
 import { isDevelopment, tokenName } from '@/app/utils/constants';
 import styles from './page.module.css';
 import { sleep } from '@/app/utils/misc';
@@ -18,7 +18,6 @@ type LoginProps = {
 const Login = (props:LoginProps) => {
   const {  } = props;
   const router = useRouter();
-  const dispatch = useDispatch();
 
   const [ cookies, setCookie, removeCookie ] = useCookies([tokenName]);
   const [ triggerRedirect, setTriggerRedirect ] = useState(0);
@@ -29,13 +28,21 @@ const Login = (props:LoginProps) => {
   };
 
   async function redirect() {
-    const tokenSet = cookies[tokenName];
-    // if (!tokenSet) { console.error(); toast('Error setting cookie, relogin, contact') };
+    try {
+      const tokenSet = cookies[tokenName];
+      console.log('Auth token is set in cookies');
+      if (!tokenSet) {
+        throw new Error('Token is not set.');
+        // toast('Error setting cookie, relogin, contact')
+      };
 
-    dispatch(authSlice.actions.setIsAuth(true));
-    // TODO: add  todo saying they're going to be redirected
-    await sleep(500);
-    router.push('/');
+      reduxStore.dispatch(authSlice.actions.setIsAuth(true));
+      // TODO: add  todo saying they're going to be redirected
+      await sleep(500);
+      router.push('/');
+    } catch (error) {
+      console.error(error);
+    };
   };
 
   async function handleSubmit(e:React.FormEvent<HTMLFormElement>) {
@@ -45,18 +52,18 @@ const Login = (props:LoginProps) => {
       const rawFormData = new FormData(e.currentTarget);
       const formData = Object.fromEntries(rawFormData);
 
-      // TODO: add try catch
       const postLogin = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
       const authTokenRaw = postLogin.headers.get('Authorization');
-      // TODO: complete this guard
-      // if (!authTokenRaw) {
-      //   console.error();
-      //   toast();
-      // };
+      if (!authTokenRaw || authTokenRaw === 'null') {
+        // TODO: get error from backend
+        console.error('500, No auth token returned. User not logged in.');
+        // toast();
+        return;
+      };
       const authToken = sanitizeToken(authTokenRaw!);
       const resLogin = await postLogin.json();
       // localStorage.setItem(userInfo, resLogin.user);
@@ -65,6 +72,7 @@ const Login = (props:LoginProps) => {
       // if (isDevelopment)
       const settingCookie = setCookie(tokenName, authToken, {path: '/'});
       console.log(`settingCookie: `, settingCookie);
+
       setTriggerRedirect((p) => p+1);
 
     } catch (error) {

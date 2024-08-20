@@ -1,12 +1,11 @@
 import Link from 'next/link';
-import { useSelector, selectAuth } from '@/lib/redux';
 import { useEffect, useState } from 'react';
+import { useSelector, selectAuth } from '@/lib/redux';
 
 
 type AuthNavProps = {
 
 };
-
 
 const AuthNav = (props:AuthNavProps) => {
   const {  } = props;

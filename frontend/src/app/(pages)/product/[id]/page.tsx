@@ -41,6 +41,7 @@ const ProductDetailSlug = (props: ProductDetailSlugProps) => {
                 </p>
                 <button
                     onClick={() => {
+                      // TODO: use dispatch from redux-store
                       dispatch(
                         cartSlice.actions.addProduct(currProductData)
                       );
