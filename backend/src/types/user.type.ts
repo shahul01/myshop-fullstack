@@ -27,13 +27,16 @@ export type User = RegisterUserHashedPass &
   id: string;
   auth_method: string;
   google_id?: string
-  full_address: string;
-  address?: string;
+  house_no_and_street_name?: string;
   city?: string;
   state?: string;
   country?: string;
   zip_code: number;
   phone_number: string;
 };
+
+export type SomeUserColumnsWithoutPass = Partial<Array<
+  keyof Omit<User, 'password'>
+>>;
 
 export type SomeUserColumns = Partial<Array<keyof User>>;
