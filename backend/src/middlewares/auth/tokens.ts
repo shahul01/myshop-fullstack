@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken';
-import { NextFunction, Request, Response } from 'express';
 import { authTokenSecret, tokenName } from "../../constants";
 import { ErrorHandler, handleCatchError } from '../../utils/error';
+import type { NextFunction, Request, Response } from 'express';
+import type { CustomReq } from '../../types/index';
 
 
 const verifyAuthTokenMW = async (req:Request, res:Response, next:NextFunction) => {
@@ -26,13 +27,17 @@ const verifyAuthTokenMW = async (req:Request, res:Response, next:NextFunction) =
     jwt.verify(token, authTokenSecret, (error, decoded) => {
       if (error) {
         // console.log(`error: `, typeof(error), JSON.stringify(error));
-        // TODO: add expiry check
+        // TODO: add expiry check if not automatically checks
         // if (error.name === 'TokenExpiredError') throw error('refreshToken');
         return res.status(401).json({message: 'Token is not valid, authorization denied'});
       };
 
       // console.log(`decoded: `, decoded);
-      // req.id = decoded.id;
+      if (!decoded || typeof decoded === 'string' ) throw new ErrorHandler(500, "Error decoding user's id from JWT");
+
+      (req as CustomReq).decoded_userId = decoded.id;
+
+      // console.log(`req: `, req.decoded.userId);
 
       next();
 

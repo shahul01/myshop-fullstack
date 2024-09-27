@@ -1,9 +1,10 @@
 import userService from "../services/user.service";
+import { UserLocationCamel } from "../types/user.type";
 import { ErrorHandler, handleCatchError } from "../utils/error";
-import type { Request, Response } from 'express';
+import type { Controller } from '../types/index';
 
 
-const getUserByEmail = async (req:Request, res:Response) => {
+const getUserByEmail: Controller = async (req, res)=> {
   try {
     const reqEmail = req.params.email;
     const user = await userService.getUserByEmail(reqEmail);
@@ -14,11 +15,20 @@ const getUserByEmail = async (req:Request, res:Response) => {
 
 };
 
-const updateUserDetails = async (req:Request, res:Response) => {
+const updateUserDetails: Controller = async (req, res) => {
   try {
-    const { user: reqUser } = req.body;
-    const user = userService.updateUserDetails(reqUser);
+    const reqUserId = req.params.id;
+    const reqUser: Partial<UserLocationCamel> = req.body;
+
+    if (req.decoded_userId !== reqUserId) return res.status(401).json({message: 'Unauthorized access.'});
+
+    const userLocationPayload: Partial<UserLocationCamel> = {
+      ...reqUser,
+    };
+
+    const user = await userService.updateUserDetails(req.decoded_userId, userLocationPayload);
     res.status(200).json(user);
+
   } catch (err) {
     handleCatchError(err);
   };
