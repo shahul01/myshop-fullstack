@@ -6,11 +6,11 @@ import type { Express } from 'express';
 
 export function initRoutes(app: Express) {
   app.use('/test', (req, res) => {
-    res.json({ message: 'Hello from backend!'});
+    res.status(200).json({ message: 'Hello from backend!'});
   });
 
   app.use('/test-auth', verifyAuthTokenMW, (req, res) => {
-    res.json({ message: 'Auth token is valid' })
+    res.status(201).json({ message: 'Auth token is valid' })
   });
 
   app.use('/products', productRoutes);

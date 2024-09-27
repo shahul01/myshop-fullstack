@@ -9,7 +9,6 @@ router
   .get(userController.getUserByEmail);
 
 router
-  // .route('/update/:email')
   .route('/:id')
   .patch(userController.updateUserDetails);
 
