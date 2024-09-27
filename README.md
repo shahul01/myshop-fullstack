@@ -1,8 +1,6 @@
 # myshop-fullstack
-## eCommerce fullstack React - Node.JS app
+## eCommerce fullstack React - Node.JS app [Work in progress]
 ## created by @shahul01
-
-<hr />
 
 ### Images
 #### Home
@@ -12,7 +10,7 @@
 ![product-detail-slug.png](./frontend/public/images/screenshots/product-detail-slug.png)
 
 
-#### Stripe
+<!-- #### Stripe -->
 
 <hr />
 
