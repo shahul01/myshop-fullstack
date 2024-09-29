@@ -37,7 +37,7 @@ const Login = (props:LoginProps) => {
       };
 
       reduxStore.dispatch(authSlice.actions.setIsAuth(true));
-      // TODO: add  todo saying they're going to be redirected
+      // TODO: toast(redirecting...);
       await sleep(500);
       router.push('/');
     } catch (error) {
@@ -57,7 +57,7 @@ const Login = (props:LoginProps) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
-      const authTokenRaw = postLogin.headers.get('Authorization');
+      const authTokenRaw:string|'null'|null = postLogin.headers.get('Authorization');
       if (!authTokenRaw || authTokenRaw === 'null') {
         // TODO: get error from backend
         console.error('500, No auth token returned. User not logged in.');
@@ -66,7 +66,7 @@ const Login = (props:LoginProps) => {
       };
       const authToken = sanitizeToken(authTokenRaw!);
       const resLogin = await postLogin.json();
-      // localStorage.setItem(userInfo, resLogin.user);
+      localStorage.setItem('userInfo', JSON.stringify(resLogin.user));
 
       // TODO: cookie has to be set manually only in dev mode(?)
       // if (isDevelopment)
