@@ -1,10 +1,18 @@
 import pool from "../config/db";
 import type { RegisterUserHashedPass, ResRegisterUser, SomeUserColumns, User, UserLocationCamel } from "../types/user.type";
+import { convertSnakeToCameCase } from "../utils/converters";
 
 
 function sanitizeTableColumns(colsToReturn:SomeUserColumns):string|'id' {
   if (colsToReturn.length === 0) return 'id';
-  return colsToReturn.join(',') as keyof User;
+  const snakeWithCamelArr = colsToReturn.map((col) => {
+    if (!col) return '';
+    const colCamel = convertSnakeToCameCase(col);
+    return `${col} AS "${colCamel}"`;
+  })
+
+  const colsString = snakeWithCamelArr.join(', ');
+  return colsString as keyof User;
 };
 
 async function createUser(user: RegisterUserHashedPass):Promise<ResRegisterUser> {
@@ -13,7 +21,7 @@ async function createUser(user: RegisterUserHashedPass):Promise<ResRegisterUser>
   const query = `
     INSERT INTO users(fullname, username, email, password, auth_method)
     VALUES($1, $2, $3, $4, $5)
-    returning id, fullname, username, email, auth_method AS authMethod
+    RETURNING id, fullname, username, email, auth_method AS authMethod
   `;
 
   const {rows: users} = await pool.query(

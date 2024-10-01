@@ -1,11 +1,8 @@
 import userQuery from "../queries/user.query";
+import { convertSnakeToCameCase } from "../utils/converters";
 import { handleCatchError } from "../utils/error";
 import type { SomeUserColumns, SomeUserColumnsWithoutPass, User, UserLocation, UserLocationCamel } from "../types/user.type";
 
-function convertSnakeToCameCase(text: string) :string {
-  const toCamel = (str:string) => str.toUpperCase().replace('_', '');
-  return text.toLowerCase().replace(/([_]\w)/g, toCamel);
-};
 
 type Object = Record<string, unknown>;
 function convertSnakeToCameCases(group: Object): Object {
